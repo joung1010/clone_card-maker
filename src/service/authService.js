@@ -6,8 +6,8 @@ import {
 } from 'firebase/auth';
 
 class AuthService {
-    constructor() {
-        this.firebaseAuth = getAuth();
+    constructor(config) {
+        this.firebaseAuth = getAuth(config);
         this.googleProvider = new GoogleAuthProvider();
         this.githubProvider = new GithubAuthProvider();
     }
