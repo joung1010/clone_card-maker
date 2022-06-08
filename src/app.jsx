@@ -2,7 +2,7 @@ import './app.module.css';
 import Login from "./component/login/login";
 import styles from './app.module.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Maker from "./common/maker/maker";
+import Maker from "./component/maker/maker";
 
 function App({authService}) {
     return (
