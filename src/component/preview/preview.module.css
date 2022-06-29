@@ -1,3 +1,5 @@
+@value makerGreen from '../../common/color.css';
+
 .preview {
     flex-basis: 50%;
 }
