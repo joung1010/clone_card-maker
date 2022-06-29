@@ -12,18 +12,20 @@ const Maker = ({authService}) => {
         {
             id:'1',
             name: 'Ellie',
-            theme : 'light',
+            theme : 'dark',
+            company:'Samsung',
             title: 'Software Engineer',
             email: 'ellie@gmail.com',
             message:'go for it',
             fileName : 'ellie',
-            fileURL: 'ellie.png',
+            fileURL: null,
         },
         {
             id:'2',
             name: 'Bob',
             theme : 'light',
             title: 'Backend Engineer',
+            company:'Samsung',
             email: 'Bob@gmail.com',
             message:'go for it',
             fileName : 'ellie',
@@ -32,12 +34,13 @@ const Maker = ({authService}) => {
         {
             id:'3',
             name: 'mason',
-            theme : 'light',
+            theme : 'colorful',
             title: 'Frontend Engineer',
+            company:'Samsung',
             email: 'mason@gmail.com',
             message:'go for it',
             fileName : 'mason',
-            fileURL: 'mason.png',
+            fileURL: null,
         },
     ]);
 
