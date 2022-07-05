@@ -8,8 +8,8 @@ import Preview from "../preview/preview";
 
 const Maker = ({authService}) => {
     const navigate = useNavigate();
-    const [cards,setCards] = useState([
-        {
+    const [cards,setCards] = useState({
+        '1':   {
             id:'1',
             name: 'Ellie',
             theme : 'dark',
@@ -20,7 +20,7 @@ const Maker = ({authService}) => {
             fileName : 'ellie',
             fileURL: null,
         },
-        {
+        '2': {
             id:'2',
             name: 'Bob',
             theme : 'light',
@@ -31,7 +31,7 @@ const Maker = ({authService}) => {
             fileName : 'ellie',
             fileURL: 'Bob.png',
         },
-        {
+        '3': {
             id:'3',
             name: 'mason',
             theme : 'colorful',
@@ -42,7 +42,10 @@ const Maker = ({authService}) => {
             fileName : 'mason',
             fileURL: null,
         },
-    ]);
+    });
+
+
+
 
     const onLogout = ()=>{
         authService.logout();
@@ -54,16 +57,31 @@ const Maker = ({authService}) => {
         });
     });
 
-    const addCard = (card) => {
-        const update = [...cards, card];
-        setCards(update);
+
+    const createOrUpdateCard = (card) => {
+        setCards(cards => {
+            const update = {...cards};
+            update[card.id]=card;
+            return update;
+        });
+    };
+    const deleteCard = (card) => {
+        setCards(cards => {
+            const update = {...cards};
+            delete update[card.id];
+            return update;
+        });
     };
 
     return(
         <section className={styles.maker}>
             <Header onLogout={onLogout}/>
             <div className={styles.container}>
-                <Editor cards={cards} addCard={addCard}/>
+                <Editor cards={cards}
+                        addCard={createOrUpdateCard}
+                        updateCard={createOrUpdateCard}
+                        deleteCard={deleteCard}
+                />
                 <Preview cards={cards}/>
             </div>
             <Footer/>
