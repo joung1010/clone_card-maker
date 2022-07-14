@@ -4,7 +4,7 @@ import Button from "../../common/button/button";
 import ImageFileInput from "../../common/img_file_input/imageFileInput";
 
 const CardEditForm = ({FileInput,card,updateCard,deleteCard}) => {
-    const {name, company, theme, title, email, message, fileName, fileURL} = card;
+    const {name, company, theme, title, email, message, fileName} = card;
 
     const onSubmit = () => {
         deleteCard(card);
@@ -40,7 +40,7 @@ const CardEditForm = ({FileInput,card,updateCard,deleteCard}) => {
             <input  className={styles.input} type="text" name="email" value={email} onChange={onChange}/>
             <textarea  className={styles.textarea} name="message" value={message} onChange={onChange}/>
             <div className={styles.fileInput}>
-                <FileInput name={name} onHandleFileChange={onHandleFileChange}/>
+                <FileInput name={fileName} onHandleFileChange={onHandleFileChange}/>
             </div>
             <Button name="Delete"
                     onClick={onSubmit}
