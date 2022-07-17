@@ -7,14 +7,14 @@ class CardRepository {
     }
 
     saveCard(userId, card) {
-        set(ref(this.database, `${userId}/cards/${card.id}`), {
+        set(ref(this.database, `clone/${userId}/cards/${card.id}`), {
             ...card,
         });
     }
 
 
     remoceCard(userId,card) {
-        remove(ref(this.database, `${userId}/cards/${card.id}`));
+        remove(ref(this.database, `clone/${userId}/cards/${card.id}`));
     }
 
 }
