@@ -1,9 +1,19 @@
 import firebaseApp from "./fiorebase";
-import { getDatabase,set,ref ,remove} from "firebase/database";
+import { getDatabase,set,ref ,remove , onValue, off} from "firebase/database";
 
 class CardRepository {
     constructor() {
         this.database = getDatabase(firebaseApp);
+    }
+
+    syncCards(userId, onUpdate) {
+
+        onValue(ref(this.database, `clone/${userId}/cards`),
+            (snapshot) => {
+            const value = snapshot.val();
+            value && onUpdate(value);
+        });
+        return () => off();
     }
 
     saveCard(userId, card) {
@@ -13,7 +23,7 @@ class CardRepository {
     }
 
 
-    remoceCard(userId,card) {
+    removeCard(userId,card) {
         remove(ref(this.database, `clone/${userId}/cards/${card.id}`));
     }
 

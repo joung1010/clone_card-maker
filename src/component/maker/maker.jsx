@@ -20,6 +20,17 @@ const Maker = ({authService,FileInput,cardRepository}) => {
     };
 
     useEffect(()=>{
+        if (!userId) {
+            return;
+        }
+        const stopsync = cardRepository.syncCards(userId,(cards)=>{
+            setCards(cards);
+        });
+        // component 가 unmount 되었을때 자동으로 호출
+        return () => stopsync;
+    },[userId]);
+
+    useEffect(()=>{
         authService.onAuthStateChanged(user => {
             if (user) {
                 setUserId(user.uid);
@@ -44,7 +55,7 @@ const Maker = ({authService,FileInput,cardRepository}) => {
             delete update[card.id];
             return update;
         });
-        cardRepository.remoceCard(userId, card);
+        cardRepository.removeCard(userId, card);
     };
 
     return(

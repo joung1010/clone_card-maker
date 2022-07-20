@@ -15,7 +15,7 @@ const imageUploader = new ImageUploader();
 const FileInput = props => (
     <ImageFileInput {...props} imageUploader={imageUploader}/>
 );
-const cardRepository = new CardRepository();
+const cardRepository = new CardRepository(initializeApp);
 root.render(
   <React.StrictMode>
     <App authService={authService} FileInput={FileInput} cardRepository ={cardRepository} />
