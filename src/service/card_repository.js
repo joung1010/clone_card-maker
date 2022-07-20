@@ -8,12 +8,12 @@ class CardRepository {
 
     syncCards(userId, onUpdate) {
 
-        onValue(ref(this.database, `clone/${userId}/cards`),
+        const stopSync = onValue(ref(this.database, `clone/${userId}/cards`),
             (snapshot) => {
             const value = snapshot.val();
             value && onUpdate(value);
         });
-        return () => off();
+        return stopSync;
     }
 
     saveCard(userId, card) {

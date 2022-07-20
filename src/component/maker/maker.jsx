@@ -27,7 +27,7 @@ const Maker = ({authService,FileInput,cardRepository}) => {
             setCards(cards);
         });
         // component 가 unmount 되었을때 자동으로 호출
-        return () => stopsync;
+        return () => stopsync();
     },[userId]);
 
     useEffect(()=>{
